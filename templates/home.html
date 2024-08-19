@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Prediction Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Health Prediction Tool</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#form">Prediction Form</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h2>Welcome to Your Health Prediction Tool</h2>
+                <p>Assess your health risks with our easy-to-use tool. Input your health data and receive predictions
+                    that can help you make informed decisions about your well-being.</p>
+                <a href="#form" class="button">Get Started</a>
+            </div>
+        </section>
+
+        <section id="form" class="form-section">
+            <div class="container">
+                <h2>Health Prediction Form</h2>
+                <p>Please fill out the form below to get personalized health predictions.</p>
+                <form action="{{ url_for('predict_datapoint') }}" method="post">
+
+                    <!-- Binary Flags -->
+                    <div class="form-group">
+                        <label for="highbp">High Blood Pressure:</label>
+                        <select id="highbp" name="HighBP">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="highchol">High Cholesterol:</label>
+                        <select id="highchol" name="HighChol">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cholcheck">Cholesterol Check:</label>
+                        <select id="cholcheck" name="CholCheck">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="smoker">Smoker:</label>
+                        <select id="smoker" name="Smoker">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="diabetes">Diabetes:</label>
+                        <select id="diabetes" name="Diabetes">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fruits">Consumes Fruits:</label>
+                        <select id="fruits" name="Fruits">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="veggies">Consumes Vegetables:</label>
+                        <select id="veggies" name="Veggies">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hvy-alcohol-consump">Heavy Alcohol Consumption:</label>
+                        <select id="hvy-alcohol-consump" name="HvyAlcoholConsump">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+
+                    <!-- Numeric Values -->
+                    <div class="form-group">
+                        <label for="bmi">BMI:</label>
+                        <input type="number" id="bmi" name="BMI" step="0.1" min="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="menthlth">Mental Health (0-30):</label>
+                        <input type="number" id="menthlth" name="MentHlth" min="0" max="30" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="physhlth">Physical Health (0-30):</label>
+                        <input type="number" id="physhlth" name="PhysHlth" min="0" max="30" required>
+                    </div>
+
+                    <!-- Additional Numeric Inputs -->
+                    <div class="form-group">
+                        <label for="age">Age (1-13):</label>
+                        <select id="age" name="Age">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="education">Education Level (1-6):</label>
+                        <select id="education" name="Education">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="income">Income Level (1-8):</label>
+                        <select id="income" name="Income">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </select>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-group">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+
+                <h2>
+                    The Prediction is {{result}}
+                </h2>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <p>If you have any questions or need support, feel free to reach out to us!</p>
+                <p>Email: <a href="mailto:support@healthpredictor.com">support@healthpredictor.com</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Health Prediction Tool. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

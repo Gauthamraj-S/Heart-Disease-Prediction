@@ -37,7 +37,6 @@
                 <h2>Health Prediction Form</h2>
                 <p>Please fill out the form below to get personalized health predictions.</p>
                 <form action="{{ url_for('predict_datapoint') }}" method="post">
-
                     <!-- Binary Flags -->
                     <div class="form-group">
                         <label for="highbp">High Blood Pressure:</label>
@@ -64,6 +63,11 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="bmi">BMI:</label>
+                        <input type="number" id="bmi" name="BMI" step="0.1" min="0" required>
+                    </div>
+
+                    <div class="form-group">
                         <label for="smoker">Smoker:</label>
                         <select id="smoker" name="Smoker">
                             <option value="0">No</option>
@@ -72,12 +76,30 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="diabetes">Diabetes:</label>
-                        <select id="diabetes" name="Diabetes">
+                        <label for="Stroke">Stroke:</label>
+                        <select id="Stroke" name="Stroke">
                             <option value="0">No</option>
                             <option value="1">Yes</option>
                         </select>
                     </div>
+
+                    <div class="form-group">
+                        <label for="diabetes">Diabetes:</label>
+                        <select id="diabetes" name="Diabetes">
+                            <option value="1">Type 1</option>
+                            <option value="2">Type 2</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="PhysActivity">Physical Activity:</label>
+                        <select id="PhysActivity" name="PhysActivity">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+
+
 
                     <div class="form-group">
                         <label for="fruits">Consumes Fruits:</label>
@@ -103,10 +125,33 @@
                         </select>
                     </div>
 
-                    <!-- Numeric Values -->
                     <div class="form-group">
-                        <label for="bmi">BMI:</label>
-                        <input type="number" id="bmi" name="BMI" step="0.1" min="0" required>
+                        <label for="AnyHealthcare">Any Health Care:</label>
+                        <select id="AnyHealthcare" name="AnyHealthcare">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="NoDocbcCost">No Docbc Cost:</label>
+                        <select id="NoDocbcCost" name="NoDocbcCost">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hvy-alcohol-consump">Heavy Alcohol Consumption:</label>
+                        <select id="hvy-alcohol-consump" name="HvyAlcoholConsump">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="GenHlth">General Health (0-30):</label>
+                        <input type="number" id="GenHlth" name="GenHlth" min="0" max="4" required>
                     </div>
 
                     <div class="form-group">
@@ -119,7 +164,22 @@
                         <input type="number" id="physhlth" name="PhysHlth" min="0" max="30" required>
                     </div>
 
-                    <!-- Additional Numeric Inputs -->
+                    <div class="form-group">
+                        <label for="DiffWalk">Different Walk:</label>
+                        <select id="DiffWalk" name="DiffWalk">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Sex">Sex:</label>
+                        <select id="Sex" name="Sex">
+                            <option value="0">Male</option>
+                            <option value="1">Female</option>
+                        </select>
+                    </div>
+
                     <div class="form-group">
                         <label for="age">Age (1-13):</label>
                         <select id="age" name="Age">
@@ -172,7 +232,7 @@
                 </form>
 
                 <h2>
-                    The Prediction is {{result}}
+                    The Prediction is {{ results }}
                 </h2>
             </div>
         </section>

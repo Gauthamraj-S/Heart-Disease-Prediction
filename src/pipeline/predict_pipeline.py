@@ -8,7 +8,7 @@ class PredictPipeline:
         # Placeholder for pipeline initialization
         pass
 
-    def predict(self, data, features):
+    def predict(self, features):
         try:
 
             model_path='artifacts\model.pkl'

@@ -55,9 +55,16 @@ def predict_datapoint():
             predict_pipeline = PredictPipeline()
             results = predict_pipeline.predict(pred_df)
 
+            if results[0] == 0:
+                prediction_output = "Disease"
+            elif results[0] == 1:
+                prediction_output = "Attack"
+            else:
+                prediction_output = "Unknown"
+
             # Return the prediction result
-            return render_template('home.html', results=results[0])
-        
+            return render_template('home.html', results=prediction_output)
+       
         except Exception as e:
             raise CustomException(e, sys)
         
